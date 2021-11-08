@@ -35,6 +35,15 @@ public class ScoreContainer implements IContainer, IWeight, IScore {
         this.value = value;
     }
 
+    public ScoreContainer(Double value) {
+        this();
+        this.getValue().add(value);
+    }
+
+    public ScoreContainer(String value) {
+        this(Double.valueOf(value));
+    }
+
     public ScoreContainer() {
         this(new ArrayList<>());
     }
