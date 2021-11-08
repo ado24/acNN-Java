@@ -34,7 +34,7 @@ public class GetScore {
         List<Double> value = streamHelper.getValue(request, "value");
 
         //Get return values
-        Double weight = Double.valueOf(streamHelper.getName(request, "weight"));
+        Double weight = streamHelper.getWeight(request, "weight");
         Double avg = streamHelper.getAverage(value);
 
         ScoreContainer retObj = new ScoreContainer(value, weight);
