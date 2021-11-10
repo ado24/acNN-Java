@@ -20,15 +20,25 @@ public class StreamHelper {
         String query = request.getQueryParameters().get(key);
         String body = request.getBody().orElse(query);
 
+        body = getJsonFormatString(key, body);
+
         com.google.gson.Gson parser = new com.google.gson.Gson();
         com.model.ScoreContainer test = parser.fromJson(body, com.model.ScoreContainer.class);
 
         return new ArrayList<>(test.getValue());
     }
 
+    public String getJsonFormatString(String key, String body) {
+        if (!body.contains(key))
+            body = String.format("{'%s' : %s}", key, body);
+        return body;
+    }
+
     public Double getWeight(HttpRequestMessage<Optional<String>> request, String key) {
         String query = request.getQueryParameters().get(key);
         String body = request.getBody().orElse(query);
+
+        body = getJsonFormatString(key, body);
 
         com.google.gson.Gson parser = new com.google.gson.Gson();
         com.model.ScoreContainer test = parser.fromJson(body, com.model.ScoreContainer.class);
