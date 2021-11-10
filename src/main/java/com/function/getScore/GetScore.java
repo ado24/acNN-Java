@@ -38,7 +38,7 @@ public class GetScore {
         Double avg = streamHelper.getAverage(value);
 
         ScoreContainer retObj = new ScoreContainer(value, weight);
-        Double score = streamHelper.getScore(retObj.getWeight(), retObj.getValue().get(0));
+        Double score = streamHelper.getScore(retObj.getWeight(), streamHelper.getAverage(retObj.getValue()));
         retObj.setScore(score);
         String returnStr = String.format("{'value': %f, 'weight': %f }",
                 avg,

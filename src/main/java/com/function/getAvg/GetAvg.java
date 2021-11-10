@@ -43,8 +43,8 @@ public class GetAvg {
                 avg,
                 count);
 
-        if (name == null) {
-            return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass a name on the query string or in the request body").build();
+        if (value == null) {
+            return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass a value (in square bracket notation) on the query string or in the request body").build();
         } else {
             return request.createResponseBuilder(HttpStatus.OK).body((new Gson()).toJson(retObj)).build();
         }
