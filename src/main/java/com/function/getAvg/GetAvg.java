@@ -28,10 +28,17 @@ public class GetAvg {
                     HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
 
+        List<Double> value;
+
         context.getLogger().info("'getAvg' trigger processed a request.");
 
-        String name = streamHelper.getName(request, "name");
-        List<Double> value = streamHelper.getValue(request, "value");
+        try {
+            String name = streamHelper.getName(request, "name");
+            value = streamHelper.getValue(request, "value");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass a value (in square bracket notation) on the query string or in the request body").build();
+        }
 
         //Get return values
         Long count = streamHelper.getCount(value); // value.size();
