@@ -4,10 +4,21 @@ import com.model.interfaces.IContainer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Container implements IContainer {
     List<Double> value;
     Long count;
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
+
+    Logger logger;
 
     public Container(Double value, Long count) {
         this();
