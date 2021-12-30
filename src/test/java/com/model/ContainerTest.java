@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 class ContainerTest {
 
+    Container testObj;
+
     @BeforeEach
     void setUp() {
     }
@@ -14,7 +16,7 @@ class ContainerTest {
     void tearDown() {
     }
 
-    @Test
+    //@Test
     void build() {
 
     }

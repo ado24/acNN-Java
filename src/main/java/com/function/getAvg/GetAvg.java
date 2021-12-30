@@ -45,6 +45,7 @@ public class GetAvg {
         Double avg = streamHelper.getAverage(value);
 
         Container retObj = new Container(avg, count);
+        retObj.setLogger(context.getLogger());
 
         String returnStr = String.format("{'value': %f, 'count': %d }",
                 avg,
