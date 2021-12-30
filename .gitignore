@@ -39,6 +39,3 @@ obj/
 
 #Azure deploy slot YAML
 #*(test).yml
-
-#Readme
-readme.*
