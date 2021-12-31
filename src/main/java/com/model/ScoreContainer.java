@@ -1,18 +1,25 @@
 package com.model;
 
+import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 import com.microsoft.azure.functions.HttpRequestMessage;
 import com.model.interfaces.IContainer;
 import com.model.interfaces.IScore;
 import com.model.interfaces.IWeight;
 
+import javax.crypto.spec.GCMParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ScoreContainer implements IContainer, IWeight, IScore {
+    @SerializedName("weight")
     Double weight;
+    @SerializedName("score")
     Double score;
+    @SerializedName("value")
     List<Double> value;
+    @SerializedName("count")
     Long count;
 
     public ScoreContainer(Double value, Long count, Double weight) {
@@ -91,6 +98,10 @@ public class ScoreContainer implements IContainer, IWeight, IScore {
     @Override
     public String toString() {
         return String.format("{'value': %s,'weight': %f}", value, weight);
+    }
+
+    public String toJsonString() {
+        return new Gson().toJson(this, this.getClass());
     }
 
     public List<Double> getValue(HttpRequestMessage<Optional<String>> request, String key) {
