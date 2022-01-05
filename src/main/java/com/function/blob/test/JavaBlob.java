@@ -25,8 +25,11 @@ public class JavaBlob {
         BufferedReader br = new BufferedReader(new CharArrayReader(content));
         String input = "";
 
+        context.getLogger().info("Start Process");
+
         try {
             while ((input = br.readLine()) != null) {
+                context.getLogger().info("Value passed in: " + input);
                 ScoreContainer in = new Gson().fromJson(input, ScoreContainer.class);
                 context.getLogger().info("Value stored: " + in.toJsonString());
             }
