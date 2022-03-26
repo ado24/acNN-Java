@@ -1,6 +1,9 @@
 package com.utility.streams;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 import com.microsoft.azure.functions.HttpRequestMessage;
+import com.model.ScoreContainer;
 
 import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
@@ -20,10 +23,11 @@ public class StreamHelper {
         String query = request.getQueryParameters().get(key);
         String body = request.getBody().orElse(query);
 
-        body = getJsonFormatString(key, body);
+        //body = getJsonFormatString(key, body);
 
-        com.google.gson.Gson parser = new com.google.gson.Gson();
-        com.model.ScoreContainer test = parser.fromJson(body, com.model.ScoreContainer.class);
+        Gson parser = new Gson();
+        //ScoreContainer test  = JsonParser.parseString(body).getAsJsonObject();
+        ScoreContainer test = parser.fromJson(body, ScoreContainer.class);
 
         return new ArrayList<>(test.getValue());
     }
@@ -40,8 +44,8 @@ public class StreamHelper {
 
         body = getJsonFormatString(key, body);
 
-        com.google.gson.Gson parser = new com.google.gson.Gson();
-        com.model.ScoreContainer test = parser.fromJson(body, com.model.ScoreContainer.class);
+        Gson parser = new Gson();
+        ScoreContainer test = parser.fromJson(body, ScoreContainer.class);
 
         if (test.getWeight() == null)
             test.setWeight(query.isEmpty() ? 0 : Double.parseDouble(query));

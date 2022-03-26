@@ -20,6 +20,7 @@ public class JavaBlob {
     public void run(
         @BlobTrigger(name = "content", path = "samples-workitems/{name}", dataType = "binary") char[] content,
         @BindingName("name") String name,
+        //@HttpTrigger(name="template")
         final ExecutionContext context
     ) {
         BufferedReader br = new BufferedReader(new CharArrayReader(content));
